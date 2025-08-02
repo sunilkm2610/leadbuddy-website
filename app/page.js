@@ -25,6 +25,7 @@ const Page = () => {
       <Script
         src={`${process.env.NEXT_PUBLIC_WIDGET_WEBSITE}/popup/popup.js`}
         strategy="afterInteractive"
+        data-subscription-id="f9458b5f-42af-4ffa-b62b-8d408a8305ed"
         data-id="join-the-waitlist"
         data-title="Join the Waitlist"
         data-description="Be the first to know when we launch. Get early access and exclusive perks!"

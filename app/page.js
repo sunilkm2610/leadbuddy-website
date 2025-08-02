@@ -23,7 +23,7 @@ const Page = () => {
       {/* <CTASection /> */}
       <SiteFooter />
       <Script
-        src={`${process.env.NEXT_PUBLIC_POPUP_URL}/popup/popup.js`}
+        src={`${process.env.NEXT_PUBLIC_WIDGET_WEBSITE}/popup/popup.js`}
         strategy="afterInteractive"
         data-id="join-the-waitlist"
         data-title="Join the Waitlist"

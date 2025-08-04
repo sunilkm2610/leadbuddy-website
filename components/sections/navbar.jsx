@@ -132,7 +132,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
               <div className="animate-bounce">
-                <Image src="/logo.svg" alt="LeadBuddy" width={40} height={40} />
+                <Image src="/logo.svg" alt="" width={40} height={40} />
               </div>
               <span className="text-xl font-bold text-foreground">
                 LeadBuddy

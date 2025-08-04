@@ -134,9 +134,9 @@ const WidgetFeatures = () => {
         Lead Generation <AnimatedGradientText>Widgets</AnimatedGradientText>
       </h2>
       <p className="text-lg text-slate-400 max-w-2xl mx-auto text-center">
-        LeadBuddy widgets are built to turn every widget into a lead, so you can
-        capture more leads, drive more sales, and grow your customer base. Just
-        focus on building—LeadBuddy handles your visitors for you.
+        LeadBuddy widgets are built to turn every visitor into a lead, so you
+        can capture more leads, drive more sales, and grow your customer base.
+        Just focus on building—LeadBuddy handles your visitors for you.
       </p>
       <div className="max-w-7xl mx-auto mt-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 grid-rows-2 gap-8 mb-20">

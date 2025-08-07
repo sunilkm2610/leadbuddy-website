@@ -4,6 +4,7 @@ import React from "react";
 import { Meteors } from "@/components/magicui/meteors";
 import { AnimatedGradientTextBadge } from "@/components/page-components/animated-badge";
 import { TypingAnimation } from "@/components/magicui/typing-animation";
+import Link from "next/link";
 
 const ShimmerButton = ({ children, className = "", onClick }) => {
   return (
@@ -64,13 +65,15 @@ const HeroSection = () => {
         </p>
 
         <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-16">
-          <ShimmerButton
-            onClick={() => {
-              window.dispatchEvent(new Event("join-the-waitlist"));
-            }}
-          >
-            Join Waitlist
-          </ShimmerButton>
+          <Link href={`${process.env.NEXT_PUBLIC_APP_URL}`}>
+            <ShimmerButton
+              onClick={() => {
+                redirect;
+              }}
+            >
+              Start for Free
+            </ShimmerButton>
+          </Link>
           {/* <button className="px-8 py-4 border border-slate-600 rounded-lg font-semibold text-slate-300 hover:text-white hover:border-slate-400 transition-all duration-300 hover:bg-slate-800/50">
             Watch Demo
           </button> */}

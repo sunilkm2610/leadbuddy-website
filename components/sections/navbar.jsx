@@ -186,14 +186,9 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-            <Button
-              className="w-full"
-              onClick={() => {
-                window.dispatchEvent(new Event("join-the-waitlist"));
-              }}
-            >
-              Join Waitlist
-            </Button>
+            <Link href={`${process.env.NEXT_PUBLIC_APP_URL}`}>
+              <Button className="w-full">Start for Free</Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}

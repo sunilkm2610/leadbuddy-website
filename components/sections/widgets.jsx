@@ -130,10 +130,10 @@ const WidgetFeatures = () => {
 
   return (
     <section className="py-20 px-4 bg-background" id="widgets">
-      <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-2">
+      <h2 className="text-4xl md:text-5xl font-bold text-foreground text-center mb-2">
         Lead Generation <AnimatedGradientText>Widgets</AnimatedGradientText>
       </h2>
-      <p className="text-lg text-slate-400 max-w-2xl mx-auto text-center">
+      <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-center">
         LeadBuddy widgets are built to turn every visitor into a lead, so you
         can capture more leads, drive more sales, and grow your customer base.
         Just focus on building—LeadBuddy handles your visitors for you.
@@ -151,12 +151,12 @@ const WidgetFeatures = () => {
               >
                 <CardHeader className="pb-4">
                   <div className="flex items-start justify-between mb-4">
-                    <div className="p-3 bg-primary/10 rounded-xl border border-primary/20">
-                      <IconComponent className="w-8 h-8 text-primary" />
+                    <div className="p-3 bg-foreground/10 rounded-xl border border-foreground/20">
+                      <IconComponent className="w-8 h-8 text-foreground" />
                     </div>
                     <Badge
                       variant="secondary"
-                      className="bg-primary/10 text-primary border-primary/20 font-bold"
+                      className="bg-foreground/10 text-foreground border-foreground/20 font-bold"
                     >
                       {tool.leadIncrease}
                     </Badge>
@@ -173,7 +173,7 @@ const WidgetFeatures = () => {
 
                 <CardContent className="space-y-6">
                   {/* Key Benefit */}
-                  <div className="flex items-center gap-2 text-sm font-medium text-primary">
+                  <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
                     <Zap className="w-4 h-4" />
                     {tool.keyBenefit}
                   </div>

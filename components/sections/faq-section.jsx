@@ -11,7 +11,7 @@ const FAQItem = ({ question, answer, isOpen, onToggle }) => {
         onClick={onToggle}
         className="w-full text-left p-6 flex justify-between items-center transition-colors duration-200"
       >
-        <span className="text-lg font-semibold text-white pr-4">
+        <span className="text-lg font-semibold text-foreground pr-4">
           {question}
         </span>
         <div
@@ -40,7 +40,9 @@ const FAQItem = ({ question, answer, isOpen, onToggle }) => {
           isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="px-6 pb-6 text-slate-300 leading-relaxed">{answer}</div>
+        <div className="px-6 pb-6 text-muted-foreground leading-relaxed">
+          {answer}
+        </div>
       </div>
     </div>
   );
@@ -81,11 +83,11 @@ const FAQSection = () => {
       <div className="max-w-4xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             <AnimatedGradientText>Frequently Asked</AnimatedGradientText>{" "}
             Questions
           </h2>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Everything you need to know about our lead generation widgets
           </p>
         </div>

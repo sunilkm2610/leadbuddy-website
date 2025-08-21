@@ -40,7 +40,7 @@ const WordRotate = ({ words, className = "" }) => {
 };
 
 const HeroSection = () => {
-  const rotatingWords = ["Leads"];
+  const rotatingWords = ["Lead"];
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -50,19 +50,17 @@ const HeroSection = () => {
       <div className="relative z-10 text-center max-w-6xl px-4">
         <AnimatedGradientTextBadge />
 
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-foreground">
-          Generate{" "}
-          <WordRotate words={rotatingWords} className="text-blue-400" /> <br />
-          Like a Pro,
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-foreground">
+          Free <WordRotate words={rotatingWords} className="text-blue-400" />{" "}
+          Generation Widgets <br /> for Your Website
           <br />
-          Without Lifting a Finger
+          No Coding Required.
         </h1>
 
         <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
           Convert every visitor into a lead with our powerful free widgets
           designed to help new businesses grow faster. Our free widgets are easy
-          to use and can be integrated into your website in minutes—no coding
-          required.
+          to use and can be integrated into your website in minutes.
         </p>
 
         <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-16">

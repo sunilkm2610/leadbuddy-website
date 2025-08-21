@@ -1,13 +1,48 @@
 "use client";
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  useCallback,
+  Suspense,
+} from "react";
 import parse from "html-react-parser";
+
+// Simple spinner component
+const Spinner = () => (
+  <div className="flex items-center justify-center py-8">
+    <svg
+      className="animate-spin h-6 w-6 text-primary"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      ></circle>
+      <path
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+      ></path>
+    </svg>
+    <span className="ml-2 text-primary">Loading Table of Contents...</span>
+  </div>
+);
 
 const OnThisPage = ({ htmlContent }) => {
   const [headings, setHeadings] = useState([]);
   const [activeId, setActiveId] = useState(null);
+  const [loading, setLoading] = useState(true);
   const observerRef = useRef(null);
 
   useEffect(() => {
+    setLoading(true);
     // Parse the HTML content and extract h2 headings
     const tempDiv = document.createElement("div");
     tempDiv.innerHTML = htmlContent;
@@ -17,6 +52,7 @@ const OnThisPage = ({ htmlContent }) => {
       id: h2.id,
     }));
     setHeadings(h2Data);
+    setLoading(false);
   }, [htmlContent]);
 
   // Helper to scroll to heading and set activeId
@@ -100,53 +136,59 @@ const OnThisPage = ({ htmlContent }) => {
   return (
     <div className="md:right-48 lg:right-1/4 hidden lg:block">
       <h2 className="text-md font-bold my-2">Table of Contents</h2>
-      <ul className="text-sm space-y-2 relative">
-        {/* Vertical line */}
-        <div
-          className="absolute left-3 top-0 bottom-0 w-0.5 bg-border z-0"
-          style={{
-            marginLeft: "2px",
-            marginTop: "28px",
-            marginBottom: "8px",
-            height: `calc(100% - 36px)`,
-          }}
-        />
-        {headings.map((heading, index) => (
-          <li key={index} className="flex items-center relative z-10">
-            {/* Vertical line with dot */}
-            <div className="flex flex-col items-center min-w-[32px] mr-3 relative">
-              {/* Dot */}
-              <div
-                className={
-                  "w-3 h-3 rounded-full border-2 z-10 " +
-                  (heading.id === activeId
-                    ? "bg-primary border-primary"
-                    : "bg-background border-border")
-                }
-                style={{
-                  transition: "background 0.2s, border 0.2s",
-                }}
-              />
-            </div>
-            {/* Text */}
-            <a
-              href={`#${heading.id}`}
-              onClick={handleHeadingClick(heading.id)}
-              className={
-                heading.id === activeId
-                  ? "text-primary font-semibold"
-                  : "text-foreground hover:text-primary"
-              }
+      {loading ? (
+        <Spinner />
+      ) : (
+        <Suspense fallback={<Spinner />}>
+          <ul className="text-sm space-y-2 relative">
+            {/* Vertical line */}
+            <div
+              className="absolute left-3 top-0 bottom-0 w-0.5 bg-border z-0"
               style={{
-                transition: "color 0.2s",
-                cursor: "pointer",
+                marginLeft: "2px",
+                marginTop: "28px",
+                marginBottom: "8px",
+                height: `calc(100% - 36px)`,
               }}
-            >
-              {parse(heading.text)}
-            </a>
-          </li>
-        ))}
-      </ul>
+            />
+            {headings.map((heading, index) => (
+              <li key={index} className="flex items-center relative z-10">
+                {/* Vertical line with dot */}
+                <div className="flex flex-col items-center min-w-[32px] mr-3 relative">
+                  {/* Dot */}
+                  <div
+                    className={
+                      "w-3 h-3 rounded-full border-2 z-10 " +
+                      (heading.id === activeId
+                        ? "bg-primary border-primary"
+                        : "bg-background border-border")
+                    }
+                    style={{
+                      transition: "background 0.2s, border 0.2s",
+                    }}
+                  />
+                </div>
+                {/* Text */}
+                <a
+                  href={`#${heading.id}`}
+                  onClick={handleHeadingClick(heading.id)}
+                  className={
+                    heading.id === activeId
+                      ? "text-primary font-semibold"
+                      : "text-foreground hover:text-primary"
+                  }
+                  style={{
+                    transition: "color 0.2s",
+                    cursor: "pointer",
+                  }}
+                >
+                  {parse(heading.text)}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </Suspense>
+      )}
     </div>
   );
 };

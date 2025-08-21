@@ -55,7 +55,7 @@ function ListItem({ icon, title, children, href, ...props }) {
 }
 
 const navigation = [
-  { name: "Home", href: "#" },
+  { name: "Home", href: "/" },
   {
     name: "Widgets",
     href: "#widgets",
@@ -63,64 +63,64 @@ const navigation = [
       {
         icon: <Megaphone className="w-6 h-6 text-background" />,
         name: "Announcement Bar",
-        href: "#",
+        href: "/widgets/free-announcement-widget",
         description:
           "Highlight important updates, promotions, or news with a clean and eye-catching announcement bar.",
       },
       {
         icon: <Square className="w-6 h-6 text-background" />,
         name: "Exit Intent Popup",
-        href: "#",
+        href: "/widgets/free-exit-intent-popup-widget",
         description:
           "Engage visitors before they leave your site with targeted offers or messages to boost conversions.",
       },
       {
         icon: <Mail className="w-6 h-6 text-background" />,
         name: "Email Signup Form",
-        href: "#",
+        href: "/widgets/free-email-signup-form-widget",
         description:
           "Grow your email list with customizable signup forms that capture leads directly from your website.",
       },
       {
         icon: <RotateCcw className="w-6 h-6 text-background" />,
         name: "Offer Spinner",
-        href: "#",
+        href: "/widgets/free-offer-spinner-widget",
         description:
           "Gamify your offers with an interactive spin wheel to attract attention and increase engagement.",
       },
-      {
-        icon: <MessageSquare className="w-6 h-6 text-background" />,
-        name: "Feedback Form",
-        href: "#",
-        description:
-          "Collect valuable insights from your visitors with a simple and easy-to-use feedback form.",
-      },
-      {
-        icon: <Star className="w-6 h-6 text-background" />,
-        name: "Review Form",
-        href: "#",
-        description:
-          "Build trust by allowing customers to share their reviews and ratings directly on your site.",
-      },
-      {
-        icon: <Cookie className="w-6 h-6 text-background" />,
-        name: "Cookie Consent",
-        href: "#",
-        description:
-          "Stay GDPR compliant with a customizable cookie consent widget for transparency and trust.",
-      },
+      // {
+      //   icon: <MessageSquare className="w-6 h-6 text-background" />,
+      //   name: "Feedback Form",
+      //   href: "/widgets/free-feedback-form-widget",
+      //   description:
+      //     "Collect valuable insights from your visitors with a simple and easy-to-use feedback form.",
+      // },
+      // {
+      //   icon: <Star className="w-6 h-6 text-background" />,
+      //   name: "Review Form",
+      //   href: "/widgets/free-review-form-widget",
+      //   description:
+      //     "Build trust by allowing customers to share their reviews and ratings directly on your site.",
+      // },
+      // {
+      //   icon: <Cookie className="w-6 h-6 text-background" />,
+      //   name: "Cookie Consent",
+      //   href: "/widgets/free-cookie-consent-widget",
+      //   description:
+      //     "Stay GDPR compliant with a customizable cookie consent widget for transparency and trust.",
+      // },
     ],
   },
-  {
-    name: "Blogs",
-    href: "/blogs",
-  },
+  // {
+  //   name: "Blogs",
+  //   href: "/blogs",
+  // },
   {
     name: "How it works",
-    href: "#how-it-works",
+    href: "/#how-it-works",
   },
   { name: "Why LeadBuddy", href: "#why-leadbuddy" },
-  { name: "FAQ", href: "#faq" },
+  { name: "FAQ", href: "/#faq" },
 ];
 
 const Navbar = () => {
@@ -182,7 +182,7 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">

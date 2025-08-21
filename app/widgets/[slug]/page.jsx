@@ -1,4 +1,5 @@
 import BlogSection from "@/components/blog-section/blog-section";
+import WidgetHeroSection from "@/components/sections/widget-hero-section";
 import fs from "fs";
 import matter from "gray-matter";
 import { notFound } from "next/navigation";
@@ -6,7 +7,7 @@ import React from "react";
 
 export const generateMetadata = async ({ params }) => {
   const { slug } = await params;
-  const filepath = `content/${slug}.md`;
+  const filepath = `widget/${slug}.md`;
 
   if (!fs.existsSync(filepath)) {
     notFound();
@@ -22,7 +23,7 @@ export const generateMetadata = async ({ params }) => {
 
 const Page = async ({ params }) => {
   const { slug } = await params;
-  const filepath = `content/${slug}.md`;
+  const filepath = `widget/${slug}.md`;
 
   if (!fs.existsSync(filepath)) {
     notFound();
@@ -31,13 +32,14 @@ const Page = async ({ params }) => {
   const { data } = matter(fileContent);
   return (
     <div>
-      <div className="flex flex-col gap-2 items-center justify-center bg-primary/20 w-full p-4 py-20">
-        <h1 className="text-4xl font-bold mb-4 text-center max-w-3xl">
-          {data.title}
-        </h1>
-        <p className="text-center max-w-3xl">{data.description}</p>
-      </div>
-      <BlogSection slug={slug} filepath={filepath} />
+      <WidgetHeroSection
+        title={data.title}
+        description={data.description}
+        image={data.image}
+        buttonText={data.buttonText}
+        buttonLink={data.buttonLink}
+      />
+      <BlogSection slug={slug} filepath={filepath} showImage={false} />
     </div>
   );
 };

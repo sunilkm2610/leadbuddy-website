@@ -1,116 +1,172 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  Menu,
-  X,
-  ChevronDown,
-  Zap,
-  Users,
-  Settings,
-  HelpCircle,
-  User,
-  LogOut,
-} from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
+} from "@/components/ui/navigation-menu";
+import {
+  Megaphone,
+  Square,
+  Mail,
+  RotateCcw,
+  MessageSquare,
+  Star,
+  Cookie,
+} from "lucide-react";
+
+// ListItem component for shadcn navigation
+function ListItem({ icon, title, children, href, ...props }) {
+  return (
+    <li {...props}>
+      <NavigationMenuLink asChild>
+        <Link
+          href={href}
+          className="flex flex-row items-start gap-3 no-underline hover:bg-accent/50 rounded-lg p-3 transition-colors w-full"
+        >
+          <div>
+            {icon && (
+              <span className="flex-shrink-0 mt-1 w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+                {icon}
+              </span>
+            )}
+          </div>
+          <div>
+            <div className="text-base font-semibold leading-tight text-foreground mb-0.5">
+              {title}
+            </div>
+            <p className="text-muted-foreground text-sm leading-snug">
+              {children}
+            </p>
+          </div>
+        </Link>
+      </NavigationMenuLink>
+    </li>
+  );
+}
+
+const navigation = [
+  { name: "Home", href: "/" },
+  {
+    name: "Widgets",
+    href: "#widgets",
+    dropdown: [
+      {
+        icon: <Megaphone className="w-6 h-6 text-background" />,
+        name: "Announcement Bar",
+        href: "/widgets/free-announcement-widget",
+        description:
+          "Highlight important updates, promotions, or news with a clean and eye-catching announcement bar.",
+      },
+      {
+        icon: <Square className="w-6 h-6 text-background" />,
+        name: "Exit Intent Popup",
+        href: "/widgets/free-exit-intent-popup-widget",
+        description:
+          "Engage visitors before they leave your site with targeted offers or messages to boost conversions.",
+      },
+      {
+        icon: <Mail className="w-6 h-6 text-background" />,
+        name: "Email Signup Form",
+        href: "/widgets/free-email-signup-form-widget",
+        description:
+          "Grow your email list with customizable signup forms that capture leads directly from your website.",
+      },
+      {
+        icon: <RotateCcw className="w-6 h-6 text-background" />,
+        name: "Offer Spinner",
+        href: "/widgets/free-offer-spinner-widget",
+        description:
+          "Gamify your offers with an interactive spin wheel to attract attention and increase engagement.",
+      },
+      // {
+      //   icon: <MessageSquare className="w-6 h-6 text-background" />,
+      //   name: "Feedback Form",
+      //   href: "/widgets/free-feedback-form-widget",
+      //   description:
+      //     "Collect valuable insights from your visitors with a simple and easy-to-use feedback form.",
+      // },
+      // {
+      //   icon: <Star className="w-6 h-6 text-background" />,
+      //   name: "Review Form",
+      //   href: "/widgets/free-review-form-widget",
+      //   description:
+      //     "Build trust by allowing customers to share their reviews and ratings directly on your site.",
+      // },
+      // {
+      //   icon: <Cookie className="w-6 h-6 text-background" />,
+      //   name: "Cookie Consent",
+      //   href: "/widgets/free-cookie-consent-widget",
+      //   description:
+      //     "Stay GDPR compliant with a customizable cookie consent widget for transparency and trust.",
+      // },
+    ],
+  },
+  // {
+  //   name: "Blogs",
+  //   href: "/blogs",
+  // },
+  {
+    name: "How it works",
+    href: "/#how-it-works",
+  },
+  { name: "Why LeadBuddy", href: "#why-leadbuddy" },
+  { name: "FAQ", href: "/#faq" },
+];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
 
-  const navigation = [
-    { name: "Home", href: "#" },
-    {
-      name: "Widgets",
-      href: "#widgets",
-      // dropdown: [
-      //   {
-      //     name: "Lead Generation",
-      //     href: "#",
-      //     description: "Convert visitors into leads",
-      //   },
-      //   {
-      //     name: "Email Marketing",
-      //     href: "#",
-      //     description: "Automated email campaigns",
-      //   },
-      //   { name: "Analytics", href: "#", description: "Track your performance" },
-      //   { name: "Integrations", href: "#", description: "Connect your tools" },
-      // ],
-    },
-    {
-      name: "How it works",
-      href: "#how-it-works",
-      // dropdown: [
-      //   { name: "AI Chatbot", href: "#", description: "24/7 customer support" },
-      //   {
-      //     name: "Form Builder",
-      //     href: "#",
-      //     description: "Create beautiful forms",
-      //   },
-      //   {
-      //     name: "Landing Pages",
-      //     href: "#",
-      //     description: "High-converting pages",
-      //   },
-      //   { name: "A/B Testing", href: "#", description: "Optimize conversions" },
-      // ],
-    },
-    { name: "Why LeadBuddy", href: "#why-leadbuddy" },
-    { name: "FAQ", href: "#faq" },
-  ];
-
-  const toggleDropdown = (index) => {
-    setActiveDropdown(activeDropdown === index ? null : index);
-  };
-
+  // Mobile menu using shadcn navigation
   const MobileMenu = () => (
     <div className="space-y-4 py-6">
-      {navigation.map((item, index) => (
-        <div key={item.name}>
-          {item.dropdown ? (
-            <div>
-              <button
-                onClick={() => toggleDropdown(index)}
-                className="flex items-center justify-between w-full text-left text-foreground hover:text-primary transition-colors py-2"
-              >
-                <span className="font-medium">{item.name}</span>
-                <ChevronDown
-                  className={`w-4 h-4 transition-transform ${
-                    activeDropdown === index ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-              {activeDropdown === index && (
-                <div className="pl-4 space-y-2 mt-2">
-                  {item.dropdown.map((subItem) => (
-                    <a
-                      key={subItem.name}
-                      href={subItem.href}
-                      className="block py-2 text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <div className="font-medium">{subItem.name}</div>
-                      <div className="text-sm">{subItem.description}</div>
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-          ) : (
-            <Link
-              href={item.href}
-              className="block text-foreground hover:text-primary transition-colors py-2 font-medium"
-            >
-              {item.name}
-            </Link>
+      <NavigationMenu orientation="vertical" viewport={false}>
+        <NavigationMenuList className="flex flex-col gap-2">
+          {navigation.map((item) =>
+            item.dropdown ? (
+              <NavigationMenuItem key={item.name}>
+                <NavigationMenuTrigger className="w-full justify-between">
+                  {item.name}
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[300px] gap-2">
+                    {item.dropdown.map((subItem) => (
+                      <ListItem
+                        key={subItem.name}
+                        icon={subItem.icon}
+                        title={subItem.name}
+                        href={subItem.href}
+                      >
+                        {subItem.description}
+                      </ListItem>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            ) : (
+              <NavigationMenuItem key={item.name}>
+                <NavigationMenuLink asChild>
+                  <Link
+                    href={item.href}
+                    className="block text-foreground hover:text-primary transition-colors py-2 font-medium"
+                  >
+                    {item.name}
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            )
           )}
-        </div>
-      ))}
-
+        </NavigationMenuList>
+      </NavigationMenu>
       <div className="border-t border-border pt-4 space-y-3">
         <Button
           className="w-full"
@@ -126,7 +182,7 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
@@ -140,49 +196,44 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation using shadcn NavigationMenu */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              {navigation.map((item, index) => (
-                <div key={item.name} className="relative group">
-                  {item.dropdown ? (
-                    <div>
-                      <button className="flex items-center text-foreground hover:text-primary transition-colors font-medium">
-                        {item.name}
-                        <ChevronDown className="w-4 h-4 ml-1 group-hover:rotate-180 transition-transform" />
-                      </button>
-
-                      {/* Dropdown Menu */}
-                      <div className="absolute left-0 mt-2 w-80 bg-background border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                        <div className="p-4 space-y-2">
+            <NavigationMenu>
+              <NavigationMenuList>
+                {navigation.map((item) =>
+                  item.dropdown ? (
+                    <NavigationMenuItem key={item.name}>
+                      <NavigationMenuTrigger>{item.name}</NavigationMenuTrigger>
+                      <NavigationMenuContent>
+                        <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                           {item.dropdown.map((subItem) => (
-                            <Link
+                            <ListItem
+                              icon={subItem.icon}
                               key={subItem.name}
+                              title={subItem.name}
                               href={subItem.href}
-                              className="block p-3 rounded-md hover:bg-muted transition-colors"
                             >
-                              <div className="font-medium text-foreground">
-                                {subItem.name}
-                              </div>
-                              <div className="text-sm text-muted-foreground">
-                                {subItem.description}
-                              </div>
-                            </Link>
+                              {subItem.description}
+                            </ListItem>
                           ))}
-                        </div>
-                      </div>
-                    </div>
+                        </ul>
+                      </NavigationMenuContent>
+                    </NavigationMenuItem>
                   ) : (
-                    <Link
-                      href={item.href}
-                      className="text-foreground hover:text-primary transition-colors font-medium"
-                    >
-                      {item.name}
-                    </Link>
-                  )}
-                </div>
-              ))}
-            </div>
+                    <NavigationMenuItem key={item.name}>
+                      <NavigationMenuLink asChild>
+                        <Link
+                          href={item.href}
+                          className="text-foreground hover:text-primary transition-colors font-medium"
+                        >
+                          {item.name}
+                        </Link>
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
+                  )
+                )}
+              </NavigationMenuList>
+            </NavigationMenu>
           </div>
 
           <div className="hidden md:flex items-center space-x-4">

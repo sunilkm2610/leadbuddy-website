@@ -52,10 +52,10 @@ export function FlowSectionV2({ className }) {
       className="min-h-screen flex flex-col items-center py-20"
       id="how-it-works"
     >
-      <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-2">
+      <h2 className="text-4xl md:text-5xl font-bold text-foreground text-center mb-2">
         How LeadBuddy <AnimatedGradientText>Works?</AnimatedGradientText>
       </h2>
-      <p className="text-lg text-slate-400 max-w-2xl mx-auto text-center">
+      <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-center">
         LeadBuddy tools help you generate more leads with widgets that integrate
         into any website without any coding requirement.
       </p>

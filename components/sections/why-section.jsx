@@ -20,18 +20,18 @@ const FeatureCard = ({ icon: Icon, title, description, delay = 0 }) => {
   return (
     <MagicCard
       gradientColor="#262626"
-      className="p-6 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl hover:border-slate-600 transition-all duration-300 group"
+      className="p-6 bg-background/50 backdrop-blur-sm border border-foreground/10 rounded-xl hover:border-foreground/20 transition-all duration-300 group"
     >
       <div className="relative">
         <div className="flex items-center mb-4">
-          <div className="p-3 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 mr-4 group-hover:scale-110 transition-transform duration-300">
-            <Icon className="w-6 h-6 text-white" />
+          <div className="p-3 rounded-lg bg-gradient-to-r from-primary to-primary/80 mr-4 group-hover:scale-110 transition-transform duration-300">
+            <Icon className="w-6 h-6 text-background" />
           </div>
-          <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors duration-300">
+          <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
             {title}
           </h3>
         </div>
-        <p className="text-slate-300 leading-relaxed group-hover:text-slate-200 transition-colors duration-300">
+        <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
           {description}
         </p>
 
@@ -88,7 +88,7 @@ const WhyChooseUsSection = () => {
     <section className="py-20 relative overflow-hidden" id="why-leadbuddy">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-grid-slate-100/[0.02] bg-[size:75px_75px]" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Section Header */}
@@ -99,12 +99,12 @@ const WhyChooseUsSection = () => {
             </AnimatedShinyText>
           </div>
 
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+          <h2 className="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
             Why Businesses Love Our{" "}
             <AnimatedGradientText>Tools</AnimatedGradientText>
           </h2>
 
-          <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Join thousands of businesses who have transformed their lead
             generation with powerful widgets, easy-to-use tools that deliver
             real results.

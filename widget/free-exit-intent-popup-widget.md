@@ -1,7 +1,7 @@
 ---
 title: How to Add an Exit Intent Popup to Your Website?
 description: Engage visitors before they leave your site with targeted offers or messages to boost conversions.
-slug: exit-intent-popup
+slug: free-exit-intent-popup-widget
 date: 12/03/2025
 author: Sunil
 image: /widget/exit-intent.jpg

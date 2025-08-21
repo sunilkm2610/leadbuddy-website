@@ -1,7 +1,7 @@
 ---
 title: How to Add an Offer Spinner to Your Website?
 description: Gamify your offers with an interactive spin wheel to attract attention and increase engagement.
-slug: offer-spinner-widget
+slug: free-offer-spinner-widget
 date: 12/03/2025
 author: Sunil
 image: /widget/offer-spinner.jpg

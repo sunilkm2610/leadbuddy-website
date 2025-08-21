@@ -42,7 +42,7 @@ export default function sitemap() {
     console.error("Error reading content directory:", error);
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_WEBSITE_URL;
   const currentDate = new Date();
 
   return [
